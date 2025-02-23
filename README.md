@@ -4,7 +4,25 @@ Given in this repository is a simple prototype for a battle system, utilising ma
 
 ## General Rules of the Battle System.
 
-The way the battle system will work is by utilising the Speed stat of each character. 
+The stats for each character are as follows:
+ - ST - Strength - effective physical attack stat
+ - SA - Spiritual Aptitude - effective magical attack stat (though for the purposes of the game, we will be referring to anything magical as "spiritual")
+ - AR - Armour - Physical defense stat
+ - SR - Spiritual Resistance - Magical defense stat
+ - SPD - Speed - Dictates how fast a character takes turns
+ - HP - Health - Health
+ - ES - Essence - Our equivalent to Mana.
+ - CR - Critical Rate - The % Chance for an attack (or healing ability) to be a critical hit
+
+The way the battle system will work is by utilising the Speed stat of each character. The more speed a character has, the faster they generate "Action Progress". Whenever the Battle System is requested to get the next character in turn, it will see how much Action Progress each character has left until they reach 1.00 and convert that to a Base of 100 speed to compare with characters with different speeds.
+
+For example, a character with 110 Speed will generate 1.00 action progress in $100/110 = 0.909$... ticks. In the same amount of internal "ticks" a character with 90 speed will accrue $0.909 * 90 / 100 = 0.8181$... Action progress. Therefore when the battle system has found that the earliest turn is in 0.909 ticks and the earliest turn character is the one with 110 speed, it will advance every character by 0.909 ticks, internally converting that to their own personal action progress. So, the 110 speed character will now have 1.00 Action Progress and will take a turn, whereas the 90 speed character will have 0.8181 Action Progress.
+
+In terms of the actual battle interactions, for Allied characters, each ally has 3 Abilities, 1 Ultimate Ability and 1 Weapon with 2 Weapon attacks. Abilities cost Essence to use. If the character does not have enough essence, they cannot use the ability. Ultimate can only be used when Ultimate Charge is at its maximum value (determined by the ultimate's cost). Weapon attacks do not cost anything, but they regenerate 10 Essence each time they are used. Ultimate charge is generated either by taking actions, spending certain amounts of essence or Taking Damage. All conversion values are currently a WIP.
+
+Since we are currently working with basic enemies only, They do not have a use for Essence or Ultimate Charge, however they still have the stats internally.
+
+Attacks and Healing abilities can critically strike. Whenever an attack critically strikes, it ignores enemy defenses and deals an extra 1.75x damage. Whenever a heal critically strikes, it still heals its normal amount, however it also creates a shield on the target worth 0.75x the value of the heal. Currently this shield has an effectively infinite duration (99 turns)
 
 ## The Task:
 
