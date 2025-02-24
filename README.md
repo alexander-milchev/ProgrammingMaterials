@@ -28,7 +28,14 @@ Attacks and Healing abilities can critically strike. Whenever an attack critical
 
 To begin work, please clone this repository to a private repo of your own or simply on your machine.
 
-We would like you to implement 1 playable character and 1 playable enemy as your task, which we will be judging you by. You must implement any new functions or events that you find necessary to make the implementation work as is written in the design kit provided. You are also allowed to make changes to existing functions or events within reason, but you must record all changes you make with reasons given.
+This is a list of tasks that you can implement. You are not obligated to finish them all, however the more you finish the better. (Of course, only if they all work well)
+
+1) Finish the implementation in the UI Layer for the buttons to display the following:
+ - The text of the button should display the ability name of the corresponding type for the AllyUnit who is currently taking their turn. (So Instead of saying "ULT" when it's AllyDummy's turn, it should say "Stub Toe")
+ - Conesutively, designate a space on the screen (Either a specific one on the screen or above each button) that, when the button for an action is hovered will display that action's description.
+2) Whenever a character's HP reaches 0, they should die and be removed from the battle characters list. In turn, the UI elements for each character should be updated to reflect this. (If theres 3 enemies and enemy 2 dies, the 3rd enemy UI element should be moved up to be the new 2nd element. The buttons for targetting should not break when this happens)
+3) We would like you to implement 1 playable character and 1 playable enemy. You must implement any new functions or events that you find necessary to make the implementation work as is written in the design kit provided. You are also allowed to make changes to existing functions or events within reason, but you must record all changes you make with reasons given.
+4) As an extra task if you have finished all others, implement a function that updates the scalings in the ability descriptions whenever the description is requested. In the AllyDummy example you can see some ability descriptions have `$ScalingPhys1$` or something similar. For this task, any time an ability description gets called, you should pattern match to replace all instances of scalings with the calculated number that they would represent. For example, if an attack has 125% Physical scaling and the character has 200 Effective Strength, in the ability description you should pattern match and replace `$PhysScaling1$` with 250. You may change the way to access the pattern if it would help you.
 
 For certain keywords there are explanations in the Glossary below
 
@@ -145,6 +152,7 @@ The format for unit information is as follows:
  - Free Action: Does not end your turn after using it.
  - Mangled: Prevents affected character from being healed from any source.
  - Intangible: Prevents affected character from being a valid target. Loses Intangible as soon as any other action is used.
+ - Execute X%: If the enemy's HP is below X%, the attack gains an extra 40% Critical Rate.
 
 ### Additions
 
