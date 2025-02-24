@@ -18,11 +18,11 @@ The way the battle system will work is by utilising the Speed stat of each chara
 
 For example, a character with 110 Speed will generate 1.00 action progress in $100/110 = 0.909$... ticks. In the same amount of internal "ticks" a character with 90 speed will accrue $0.909 * 90 / 100 = 0.8181$... Action progress. Therefore when the battle system has found that the earliest turn is in 0.909 ticks and the earliest turn character is the one with 110 speed, it will advance every character by 0.909 ticks, internally converting that to their own personal action progress. So, the 110 speed character will now have 1.00 Action Progress and will take a turn, whereas the 90 speed character will have 0.8181 Action Progress.
 
-In terms of the actual battle interactions, for Allied characters, each ally has 3 Abilities, 1 Ultimate Ability and 1 Weapon with 2 Weapon attacks. Abilities cost Essence to use. If the character does not have enough essence, they cannot use the ability. Ultimate can only be used when Ultimate Charge is at its maximum value (determined by the ultimate's cost). Weapon attacks do not cost anything, but they regenerate 10 Essence each time they are used. Ultimate charge is generated either by taking actions, spending certain amounts of essence or Taking Damage. All conversion values are currently a WIP.
+In terms of the actual battle interactions, for Allied characters, each ally has 1 Passive (which is part of the task for you to implement), 3 Abilities, 1 Ultimate Ability and 1 Weapon with 2 Weapon attacks. Abilities cost Essence to use. If the character does not have enough essence, they cannot use the ability. Ultimate can only be used when Ultimate Charge is at its maximum value (determined by the ultimate's cost). Weapon attacks do not cost anything, but they regenerate 10 Essence each time they are used. Ultimate charge is generated either by taking actions, spending certain amounts of essence or Taking Damage. All conversion values are currently a WIP.
 
 Since we are currently working with basic enemies only, They do not have a use for Essence or Ultimate Charge, however they still have the stats internally.
 
-Attacks and Healing abilities can critically strike. Whenever an attack critically strikes, it ignores enemy defenses and deals an extra 1.75x damage. Whenever a heal critically strikes, it still heals its normal amount, however it also creates a shield on the target worth 0.75x the value of the heal. Currently this shield has an effectively infinite duration (99 turns)
+Attacks and Healing abilities can critically strike. Whenever an attack critically strikes, it ignores enemy defenses and deals an extra 0.75x damage, bringing the total damage up to 1.75x. Whenever a heal critically strikes, it still heals its normal amount, however it also creates a shield on the target worth 0.75x the value of the heal. Currently this shield has an effectively infinite duration (99 turns)
 
 ## The Task:
 
@@ -109,7 +109,7 @@ The format for unit information is as follows:
     Battlecaster Oni (Allrounder)
     **Cone of Frost** - Deal 25% SA Spiritual Damage to all enemies and apply 10% **Slow** for 2 turns.
 
-    **Icicle** - Hit an enemy, dealing 125% SA Spiritual Damage and increase SA by 25% permanently
+    **Icicle** - Hit an enemy, dealing 125% SA Spiritual Damage and increase base SA by 25% permanently. (Not technically a buff, just infinite scaling increase of base SA stat)
 
     **Cold Touch** - Hit an enemy ONCE for 50% SA + 50% ST Physical Damage and apply 10% **Slow** for 2 turns.
 
