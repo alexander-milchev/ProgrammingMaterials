@@ -33,6 +33,7 @@ This is a list of tasks that you can implement. You are not obligated to finish 
 1) Finish the implementation in the UI Layer for the buttons to display the following:
  - The text of the button should display the ability name of the corresponding type for the AllyUnit who is currently taking their turn. (So Instead of saying "ULT" when it's AllyDummy's turn, it should say "Stub Toe")
  - Conesutively, designate a space on the screen (Either a specific one on the screen or above each button) that, when the button for an action is hovered will display that action's description.
+ - In the same way, make it so that hovering over any character's UI element will display the description of their Passive, if they have one. (Otherwise display "No Passive")
 2) Whenever a character's HP reaches 0, they should die and be removed from the battle characters list. In turn, the UI elements for each character should be updated to reflect this. (If theres 3 enemies and enemy 2 dies, the 3rd enemy UI element should be moved up to be the new 2nd element. The buttons for targetting should not break when this happens)
 3) We would like you to implement 1 playable character and 1 playable enemy. You must implement any new functions or events that you find necessary to make the implementation work as is written in the design kit provided. You are also allowed to make changes to existing functions or events within reason, but you must record all changes you make with reasons given.
 4) As an extra task if you have finished all others, implement a function that updates the scalings in the ability descriptions whenever the description is requested. In the AllyDummy example you can see some ability descriptions have `$ScalingPhys1$` or something similar. For this task, any time an ability description gets called, you should pattern match to replace all instances of scalings with the calculated number that they would represent. For example, if an attack has 125% Physical scaling and the character has 200 Effective Strength, in the ability description you should pattern match and replace `$PhysScaling1$` with 250. You may change the way to access the pattern if it would help you.
@@ -41,7 +42,7 @@ For certain keywords there are explanations in the Glossary below
 
 ### Ally Character:
 
-Must be implemented inheriting from AllyUnitBase. You can see the AllyDummy as an example that I have implemented for testing. 
+Must be implemented inheriting from AllyUnitBase. You can see the AllyDummy as an example that I have implemented for testing. We have provided an Icon for the character, the asset should be called `YuaNormal`.
 
 The format for unit information is as follows:
     Character name: class (Weapon name) - Stats
@@ -96,7 +97,7 @@ For the sake of these character kits, you can leave the Weapon stats as empty (+
 
 ### Enemy Characters
 
-Must be implemented inhereting from EnemyUnitBase. You can look at EnemyDummy as an example that I have implemented for testing.
+Must be implemented inhereting from EnemyUnitBase. You can look at EnemyDummy as an example that I have implemented for testing. We have not provided an icon for the enemies so you can either use an empty one or something else. As long as it is easy to distinguish from the EnemyDummy. (or you can also change EnemyDummy's icon.)
 
 The format for unit information is as follows:
     Kit: Stats
@@ -191,3 +192,5 @@ Non-scaling statuses will hold everything else, such as **Stun**, **Intangible**
 Shields are not considered Status Effects and are instead their own thing.
 
 Whenever working with enemy decision making/targetting, if an attack targets "Ally" logically, you must target an Enemy in the program code, and vice versa, as Ally Units are stored separately from Enemy Units in the Battle System.
+
+On the side is a list of the current character taking turn and the 4 after it. This is updated live as any changes to the turn order are made (Slows, pushback/forward, etc.)
