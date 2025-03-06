@@ -123,7 +123,7 @@ The format for unit information is as follows:
 
 
     Behaviour:
-    If number of enemies without **Slow** applied by self >= 2 and last used **Cone of Frost** > 3 turns ago
+    If number of enemies without **Slow** applied by self <= 2 and last used **Cone of Frost** > 3 turns ago
         Use **Cone of Frost**
     Else If the speed of the fastest enemy > own speed and not slowed and fastest enemy is targetable (Not being provoked to another enemy or untargetable in another way)
         Use **Cold Touch** on them
